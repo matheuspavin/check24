@@ -15,7 +15,23 @@ const boardAssemble = async function () {
         i++;
     }
 
-    console.log(board);
+    // console.log(board);
+    checkColorsQuantity(board);
+    return board;
+};
+
+const checkColorsQuantity = async function (board) {
+    let colors = {};
+    for (line of board) {
+        for (color of line) {
+            if(colors.hasOwnProperty(color)){
+                colors[color] += 1;
+            } else {
+                colors[color] = 1;
+            }
+        }
+    }
+    return colors;
 };
 
 boardAssemble();

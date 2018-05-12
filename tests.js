@@ -2,19 +2,19 @@ const expect = require('chai').expect
 // global.chai.use(require('chai-as-promised'));
 const server = require('./server');
 
-describe('Board game tests',  function () {
+describe('Board game tests', function () {
 
     var board;
 
-    beforeEach( function () {
-        board = [ [ 'orange', 'orange', 'blue', 'red', 'red', 'orange' ],
-        [ 'red', 'blue', 'blue', 'blue', 'red', 'orange' ],
-        [ 'blue', 'red', 'orange', 'blue', 'orange', 'orange' ],
-        [ 'red', 'red', 'blue', 'orange', 'blue', 'orange' ],
-        [ 'blue', 'red', 'orange', 'red', 'blue', 'blue' ],
-        [ 'orange', 'red', 'red', 'blue', 'blue', 'red' ] ];
+    beforeEach(function () {
+        board = [['orange', 'orange', 'blue', 'red', 'red', 'orange'],
+        ['red', 'blue', 'blue', 'blue', 'red', 'orange'],
+        ['blue', 'red', 'orange', 'blue', 'orange', 'orange'],
+        ['red', 'red', 'blue', 'orange', 'blue', 'orange'],
+        ['blue', 'red', 'orange', 'red', 'blue', 'blue'],
+        ['orange', 'red', 'red', 'blue', 'blue', 'red']];
     });
-    
+
     it('Should create a new board', async function () {
         let createdBoard = await server.createBoard();
         expect(createdBoard[0].length).to.be.equal(6);
@@ -28,7 +28,7 @@ describe('Board game tests',  function () {
     });
 
     it('Should get the adjacent colors of one tile', async function () {
-        let adjacents = server.getAdjacentColors({x: 2, y: 3}, board);
+        let adjacents = server.getAdjacentColors({ x: 2, y: 3 }, board);
         expect(adjacents.north).to.be.equal('blue');
         expect(adjacents.south).to.be.equal('orange');
         expect(adjacents.west).to.be.equal('orange');

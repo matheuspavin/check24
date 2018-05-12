@@ -21,15 +21,15 @@ const colorsCount = function (board) {
 const getAdjacentColors = function (tile, board) {
     let adjacents = {};
     if (board[tile.x - 1]) {
-         adjacents['north'] = board[tile.x - 1][tile.y];
+        adjacents['north'] = board[tile.x - 1][tile.y];
     }
     if (board[tile.y + 1]) {
         adjacents['east'] = board[tile.x][tile.y + 1];
     }
-    if(board[tile.x + 1]) {
+    if (board[tile.x + 1]) {
         adjacents['south'] = board[tile.x + 1][tile.y];
     }
-    if(board[tile.y - 1]) {
+    if (board[tile.y - 1]) {
         adjacents['west'] = board[tile.x][tile.y - 1];
     }
     return adjacents;
@@ -66,13 +66,16 @@ const getTopColor = function (board) {
 
 const main = function (size = 6, colors = ['blue', 'red', 'orange']) {
     const board = new Board(size, colors).createBoard();
-    const adjacents = getAdjacentColors({x: 0, y: 0}, board);
+    const adjacents = getAdjacentColors({ x: 0, y: 0 }, board);
     const topColor = getTopColor(board);
 
-    if (adjacents[topColor.color] || board[0][0] === topColor.color) {
-        changeColorsBoard(board, color, newColor)
-    }
-}
+    // if (adjacents[topColor.color] || board[0][0] === topColor.color) {
+    //     changeColorsBoard(board, color, newColor)
+    // }
+
+    console.log(board);
+    return board;
+}();
 
 module.exports = {
     createBoard,

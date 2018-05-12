@@ -2,12 +2,12 @@
 
 class Board {
 
-    constructor (size, colors) {
+    constructor(size, colors) {
         this.size = size;
         this.colors = colors;
     };
 
-    createBoard () {
+    createBoard() {
         let i = 0;
         let board = [];
         while (i < this.size) {
@@ -20,7 +20,6 @@ class Board {
             board.push(line);
             i++;
         }
-        console.log(board);
         return board;
     };
 };

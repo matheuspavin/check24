@@ -1,6 +1,5 @@
 
-const boardAssemble = function () {
-    const size = 6;
+const boardAssemble = function (size) {
     const colors = ['blue', 'red', 'orange']
     let i = 0;
     let board = [];
@@ -14,8 +13,6 @@ const boardAssemble = function () {
         board.push(line);
         i++;
     }
-    colorsCount(board);
-    getAdjacentColors({x: 0, y: 0}, board);
     console.log(board);
     return board;
 };
@@ -36,7 +33,6 @@ const colorsCount = function (board) {
 
 const getAdjacentColors = function (tile, board) {
     let adjacents = {};
-    console.log(board[tile.x - 1]);
     if (board[tile.x - 1]) {
          adjacents['north'] = board[tile.x - 1][tile.y];
     }
@@ -49,7 +45,48 @@ const getAdjacentColors = function (tile, board) {
     if(board[tile.y - 1]) {
         adjacents['west'] = board[tile.x][tile.y - 1];
     }
-    console.log(adjacents);
     return adjacents;
 };
+
+const changeColorsBoard = function (board, color, newColor) {
+    let coloredBoard = [];
+    for (line of board) {
+        line = line.map(() => {
+            if (color === newColor) {
+                return newColor;
+            }
+        });
+        coloredBoard.push(line);
+    }
+    console.log(coloredBoard);
+    return coloredBoard;
+};
+
+const getTopColor = function (board) {
+    const colors = colorsCount(board);
+    const topColor = {
+        color: 'x',
+        count: 0
+    };
+    for (color in colors) {
+        if (colors[color] > topColor.count) {
+            topColor.color = color;
+            topColor.count = colors[color]
+        }
+    }
+    return topColor;
+};
+
+const main = function () {
+    const board = boardAssemble(6);
+    const adjacents = getAdjacentColors({x: 0, y: 0}, board);
+    const topColor = getTopColor(board);
+
+    if (adjacents[topColor.color] || board[0][0] === topColor.color) {
+        changeColorsBoard(board, color, newColor)
+    }
+}
+
+
+
 boardAssemble();

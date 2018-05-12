@@ -1,20 +1,7 @@
+const Board = require('./board');
 
-const boardAssemble = function (size) {
-    const colors = ['blue', 'red', 'orange']
-    let i = 0;
-    let board = [];
-    while (i < size) {
-        let x = 0;
-        let line = [];
-        while (x < size) {
-            line.push(colors[Math.floor(Math.random() * colors.length)]);
-            x++;
-        }
-        board.push(line);
-        i++;
-    }
-    console.log(board);
-    return board;
+const createBoard = function (size = 6, colors = ['blue', 'red', 'orange']) {
+    return new Board(size, colors).createBoard();
 };
 
 const colorsCount = function (board) {
@@ -77,8 +64,8 @@ const getTopColor = function (board) {
     return topColor;
 };
 
-const main = function () {
-    const board = boardAssemble(6);
+const main = function (size = 6, colors = ['blue', 'red', 'orange']) {
+    const board = new Board(size, colors).createBoard();
     const adjacents = getAdjacentColors({x: 0, y: 0}, board);
     const topColor = getTopColor(board);
 
@@ -87,10 +74,8 @@ const main = function () {
     }
 }
 
-boardAssemble();
-
 module.exports = {
-    boardAssemble,
+    createBoard,
     colorsCount,
     getAdjacentColors,
     changeColorsBoard,

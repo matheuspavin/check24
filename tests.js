@@ -16,7 +16,7 @@ describe('Board game tests',  function () {
     });
     
     it('Should create a new board', async function () {
-        let createdBoard = await server.boardAssemble(6);
+        let createdBoard = await server.createBoard();
         expect(createdBoard[0].length).to.be.equal(6);
     });
 

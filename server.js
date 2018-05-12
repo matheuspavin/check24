@@ -1,5 +1,5 @@
 
-const boardAssemble = async function () {
+const boardAssemble = function () {
     const size = 6;
     const colors = ['blue', 'red', 'orange']
     let i = 0;
@@ -14,17 +14,17 @@ const boardAssemble = async function () {
         board.push(line);
         i++;
     }
-
-    // console.log(board);
-    checkColorsQuantity(board);
+    colorsCount(board);
+    getAdjacentColors({x: 0, y: 0}, board);
+    console.log(board);
     return board;
 };
 
-const checkColorsQuantity = async function (board) {
+const colorsCount = function (board) {
     let colors = {};
     for (line of board) {
         for (color of line) {
-            if(colors.hasOwnProperty(color)){
+            if (colors.hasOwnProperty(color)) {
                 colors[color] += 1;
             } else {
                 colors[color] = 1;
@@ -34,4 +34,22 @@ const checkColorsQuantity = async function (board) {
     return colors;
 };
 
+const getAdjacentColors = function (tile, board) {
+    let adjacents = {};
+    console.log(board[tile.x - 1]);
+    if (board[tile.x - 1]) {
+         adjacents['north'] = board[tile.x - 1][tile.y];
+    }
+    if (board[tile.y + 1]) {
+        adjacents['east'] = board[tile.x][tile.y + 1];
+    }
+    if(board[tile.x + 1]) {
+        adjacents['south'] = board[tile.x + 1][tile.y];
+    }
+    if(board[tile.y - 1]) {
+        adjacents['west'] = board[tile.x][tile.y - 1];
+    }
+    console.log(adjacents);
+    return adjacents;
+};
 boardAssemble();

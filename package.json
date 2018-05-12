@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha tests.js",
     "start": "node server.js"
   },
   "repository": {
@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/matheuspavin/check24/issues"
   },
-  "homepage": "https://github.com/matheuspavin/check24#readme"
+  "homepage": "https://github.com/matheuspavin/check24#readme",
+  "dependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.1.1"
+  }
 }

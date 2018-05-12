@@ -87,6 +87,12 @@ const main = function () {
     }
 }
 
-
-
 boardAssemble();
+
+module.exports = {
+    boardAssemble,
+    colorsCount,
+    getAdjacentColors,
+    changeColorsBoard,
+    getTopColor
+}
